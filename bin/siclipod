@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'siclipod'
+
+begin
+  Siclipod::Interface.parse(ARGV)
+rescue => e
+  puts e
+end
