@@ -29,8 +29,8 @@ module Siclipod
           `mkdir -p #{feeddir}`
 
           File.open(feeddir + 'data','w') { |file|
-            file.write("{'title': #{feed_title},\n")
-            file.write(" 'url': #{feedname}}\n")
+            file.write("{\"title\": \"#{feed_title}\",\n")
+            file.write(" \"url\": \"#{feedname}\"}\n")
           }
           File.open(feeddir + 'items','w') { |file|
             file.write("{\n")
@@ -38,7 +38,8 @@ module Siclipod
               title = item.css('title')[0].content
               url = item.css('enclosure')[0]['url']
               filename = url[/([^\/]*$)/,1]
-              "'#{filename}':\n {'title':\n   '#{title}',\n  'url':\n   '#{url}'}\n"
+              "\"#{filename}\":\n {\"title\":\n   \"#{title}\",\n"+\
+                "  \"url\":\n   \"#{url}\"}\n"
             }.join(','))
             file.write("}\n")
           }
