@@ -33,12 +33,14 @@ module Siclipod
             file.write(" 'url': #{feedname}}\n")
           }
           File.open(feeddir + 'items','w') { |file|
-            page.css('item').each { |item|
+            file.write("{\n")
+            file.write(page.css('item').map { |item|
               title = item.css('title')[0].content
               url = item.css('enclosure')[0]['url']
-              file.write("[#{title},\n")
-              file.write(" #{url}]\n")
-            }
+              filename = url[/([^\/]*$)/,1]
+              "'#{filename}':\n {'title':\n   '#{title}',\n  'url':\n   '#{url}'}\n"
+            }.join(','))
+            file.write("}\n")
           }
         end
 
