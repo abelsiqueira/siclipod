@@ -15,10 +15,7 @@ module Siclipod
         end
 
         def list_feeds
-          feeds = `ls #{Siclipod::Interface.homedir}`.split.map { |dir|
-            JSON[File.read(Siclipod::Interface.homedir + dir + "/data")]
-          }
-          Siclipod::Parse.get_feeds.split.map { |feed|
+          Siclipod::Parse.get_feeds.map { |feed|
             Siclipod::Parse.get_feed_data(feed)
           }.each { |feed|
             puts "- Title: #{feed['title']}"

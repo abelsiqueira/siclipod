@@ -6,7 +6,7 @@ module Siclipod
     class << self
 
       def get_feeds
-        `ls #{Siclipod::Interface.homedir}`
+        `ls #{Siclipod::Interface.homedir}`.split("\n")
       end
 
       def get_feed_data(feed)

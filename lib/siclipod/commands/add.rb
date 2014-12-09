@@ -27,7 +27,7 @@ module Siclipod
 
           feed_title = page.css('channel').css('title')[0].content
           feeddir = Siclipod::Interface.homedir + feed_title + '/'
-          `mkdir -p #{feeddir}podcasts`
+          `mkdir -p "#{feeddir}podcasts"`
 
           Siclipod::Parse.write_feed_data(feeddir,{"title"=>feed_title, "url"=>feedname})
 

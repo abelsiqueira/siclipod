@@ -34,7 +34,7 @@ module Siclipod
         def download_file(dir, url, filename)
           dir = Siclipod::Interface.homedir + dir + '/podcasts'
           puts "Downloading #{url} to #{dir}"
-          `wget #{url} -t 0 -O #{dir}/#{filename}`
+          `wget #{url} -t 0 -O "#{dir}/#{filename}"`
         end
 
       end
