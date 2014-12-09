@@ -13,6 +13,7 @@ require_all 'siclipod/commands'
 module Siclipod
   class Interface
     @@homedir = ENV['HOME'] + '/.siclipod/'
+    @@config = ".config"
 
     class << self
 
@@ -39,6 +40,19 @@ module Siclipod
 
       def initialize
         `mkdir -p #{@@homedir}`
+        create_config unless File.exist?(@@homedir+@@config)
+      end
+
+      def create_config
+        write_config({"player"=>"smplayer"})
+      end
+
+      def write_config(config)
+        File.open(@@homedir+@@config,'w').write(JSON.pretty_generate(config))
+      end
+
+      def get_config
+        JSON[File.read(@@homedir+@@config)]
       end
 
       def usage
@@ -51,6 +65,10 @@ module Siclipod
 
       def homedir
         @@homedir
+      end
+
+      def config
+        @@config
       end
 
     end

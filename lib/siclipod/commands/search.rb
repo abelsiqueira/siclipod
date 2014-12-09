@@ -6,7 +6,7 @@ module Siclipod
 
         def process(args)
           if args.length < 2
-            raise "ERROR: Too few argument for download"
+            raise "ERROR: Too few argument for search"
           else
             search(args[0], args[1])
           end
