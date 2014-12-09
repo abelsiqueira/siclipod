@@ -27,10 +27,12 @@ module Siclipod
         end
 
         def list_feed(feed)
-          Siclipod::Parse.get_feed_items(feed).each { |key,item|
-            puts "- #{key}"
+          Siclipod::Parse.get_feed_items(feed).each { |item|
+            puts "- Filename: #{item['filename']}"
             puts "  Title: #{item['title']}"
             puts "  URL: #{item['url']}"
+            puts "  Downloaded: #{item['downloaded']}"
+            puts "  Marked: #{item['marked']}"
           }
         end
 

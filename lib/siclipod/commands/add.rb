@@ -29,9 +29,9 @@ module Siclipod
           feeddir = Siclipod::Interface.homedir + feed_title + '/'
           `mkdir -p #{feeddir}podcasts`
 
-          Siclipod::Parse.write_feed_data({"title"=>feed_title, "url"=>feedname})
+          Siclipod::Parse.write_feed_data(feeddir,{"title"=>feed_title, "url"=>feedname})
 
-          Siclipod::Parse.write_feed_items( page.css('item').map { |item|
+          Siclipod::Parse.write_feed_items(feeddir,page.css('item').map { |item|
             url=item.css('enclosure')[0]['url']
             filename=url[/([^\/]*$)/,1]
             downloaded = File.exist?(feeddir + "podcasts/#{filename}") ? true : false

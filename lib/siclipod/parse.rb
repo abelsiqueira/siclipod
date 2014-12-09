@@ -21,11 +21,11 @@ module Siclipod
         JSON[File.read(file)]
       end
 
-      def write_feed_data(feed)
-        File.open(feeddir + 'data','w').write(JSON.pretty_generate(feed))
+      def write_feed_data(feeddir,data)
+        File.open(feeddir + 'data','w').write(JSON.pretty_generate(data))
       end
 
-      def write_feed_items(feed)
+      def write_feed_items(feeddir,feed)
         File.open(feeddir + 'items','w').write(JSON.pretty_generate(feed))
       end
 
